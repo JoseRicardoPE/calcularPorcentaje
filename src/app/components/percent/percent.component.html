@@ -1,1 +1,36 @@
-<p>percent works!</p>
+<div class="col-md-8 mx-auto">
+    <form action="" [formGroup]="formCalcPercent" (ngSubmit)="calcPercent()">
+        <div class="">
+            <label for="userPercent" class="col-form-label">Cuál es el porcentaje que desea averiguar: </label>
+            <input type="number" id="userPercent" class="form-control" formControlName="inputPercent">
+        </div>
+        <ng-container *ngIf="formCalcPercent.get('inputPercent')?.hasError('required') && formCalcPercent.get('inputPercent')?.touched">
+            <div class="text-danger mt-1">
+                <span>¡Ingrese sólo números y que sean mayores a cero por favor!</span>
+            </div>
+        </ng-container>
+        <div class="">
+            <label for="userAmount" class="col-form-label mt-2">De qué cantidad: </label>
+            <input type="number" id="userAmount" class="form-control" formControlName="inputAmount">
+        </div>
+        <ng-container *ngIf="formCalcPercent.get('inputAmount')?.hasError('required') && formCalcPercent.get('inputAmount')?.touched">
+            <div class="text-danger mt-1">
+                <span>¡Ingrese sólo números y que sean mayores a cero por favor!</span>
+            </div>
+        </ng-container>
+        <div class="mt-4">
+            <button type="submit" class="fw-bold btn btn-primary" [disabled]="formCalcPercent.invalid">
+                Calcular
+            </button>
+            <button type="submit" class="fw-bold btn btn-warning ms-4" (click)="resetInputs()">
+                Limpiar
+            </button>
+        </div>
+    </form>
+    <ng-container *ngIf="showPercent">
+        <div class="mt-4">
+            <span class="result-percent">El {{formCalcPercent.get('inputPercent')?.value}}% de {{formCalcPercent.get('inputAmount')?.value}} es</span>
+            <span class="fw-bold ms-1">{{result}}</span>
+        </div>
+    </ng-container>
+</div>
