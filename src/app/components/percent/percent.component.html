@@ -1,5 +1,5 @@
 <div class="col-md-8 mx-auto">
-    <form action="" [formGroup]="formCalcPercent" (ngSubmit)="calcPercent()">
+    <form action="" [formGroup]="formCalcPercent" (ngSubmit)="showMessage()">
         <div class="">
             <label for="userPercent" class="col-form-label">Cuál es el porcentaje que desea averiguar: </label>
             <input type="number" id="userPercent" class="form-control" formControlName="inputPercent">
@@ -22,15 +22,17 @@
             <button type="submit" class="fw-bold btn btn-primary" [disabled]="formCalcPercent.invalid">
                 Calcular
             </button>
-            <button type="submit" class="fw-bold btn btn-warning ms-4" (click)="resetInputs()">
+            <button type="submit" class="fw-bold btn btn-success ms-4" (click)="resetInputs()">
                 Limpiar
             </button>
         </div>
     </form>
     <ng-container *ngIf="showPercent">
         <div class="mt-4">
-            <span class="result-percent">El {{formCalcPercent.get('inputPercent')?.value}}% de {{formCalcPercent.get('inputAmount')?.value}} es</span>
-            <span class="fw-bold ms-1">{{result}}</span>
+            <app-result *ngIf="formCalcPercent.valid" 
+                [percent]="formCalcPercent.get('inputPercent')?.value"
+                [amount]="formCalcPercent.get('inputAmount')?.value">
+            </app-result>
         </div>
     </ng-container>
 </div>

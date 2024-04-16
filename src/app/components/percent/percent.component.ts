@@ -22,12 +22,8 @@ export class PercentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  calcPercent() {
+  showMessage() {
     if (this.formCalcPercent.valid) {
-      const percent = this.formCalcPercent.get('inputPercent')?.value;
-      const amount = this.formCalcPercent.get('inputAmount')?.value;
-      this.result = (percent / 100) * amount;
-      console.log(this.result);
       this.showPercent = true;
     } else {
       this.showPercent = false;
