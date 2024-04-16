@@ -8,8 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PercentComponent implements OnInit {
 
+  formCalcPercent!: FormGroup;
   showPercent = false;
-  formCalcPercent!: FormGroup
   result: number | undefined;
 
   constructor(private fb: FormBuilder) {
@@ -22,7 +22,7 @@ export class PercentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  showMessage() {
+  showResult() {
     if (this.formCalcPercent.valid) {
       this.showPercent = true;
     } else {
